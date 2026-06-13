@@ -43,7 +43,7 @@ public class AuthController {
 			if(usuario != null) {
 				String token = JwtUtil.generarToken(usuario.getUsername(), usuario.getRol());
 				//return ResponseEntity.ok("Login existoso. Bienvenido, "+usuario.getUsername());
-				return ResponseEntity.ok("token: "+token);
+				return ResponseEntity.ok(Map.of("token: ",token));
 			}else{
 				return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
 			}
@@ -74,14 +74,14 @@ public class AuthController {
 			
 			if ("ADMIN".equals(rol)) {
 				return ResponseEntity.ok(Map.of(
-						"Mensaje", "Bienvenido al sistema del refugio de mascotas", 
+						"Mensaje", "Bienvenido al sistema del refugio de mascotas - Eres Administrador", 
 						"Usuario", usuario,
 						"Rol", rol,
 						"Estatus", "Autenticado Existosamente"
 						));	
 			}else if("USER".equals(rol)){
 				return ResponseEntity.ok(Map.of(
-						"Mensaje", "Bienvenido al sistema del refugio de mascotas", 
+						"Mensaje", "Bienvenido al sistema del refugio de mascotas - Eres Usuario con permisos basicos", 
 						"Usuario", usuario,
 						"Rol", rol,
 						"Estatus", "Autenticado Existosamente"
